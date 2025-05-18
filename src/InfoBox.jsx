@@ -7,22 +7,23 @@ import Typography from '@mui/material/Typography';
 
 import "./InfoBox.css"
 
-export default function InfoBox(){
-    let initial_image = "https://images.unsplash.com/photo-1641970304088-2b016b4a883b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+export default function InfoBox({Info}){
+    // let initial_image = "https://images.unsplash.com/photo-1641970304088-2b016b4a883b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    const hot = "https://images.unsplash.com/photo-1661278931649-f4a11b82201b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    const cold = "https://images.unsplash.com/photo-1542267207-f8127b454605?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    const rain = "https://images.unsplash.com/photo-1563389843516-4a7b39dce10d?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-    let Info = {
-        city: "Delhi",
-        weather: "windy",
-    }
+    // let icons = {
+        
+    // }
     return(
         <div className="InfoBox">
-            <h1>WeatherInfo - {Info.weather}</h1>
+            {/* <h1>WeatherInfo - {Info.weather}</h1> */}
             <div className='cardContainer'>
                 <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
                         sx={{ height: 140 }}
-                        // image="/static/images/cards/contemplative-reptile.jpg"
-                        image={initial_image}
+                        image={Info.humidity > 80 ? rain : (Info.temp > 15) ? hot : cold  }
                         title="green iguana"
                     />
                     <CardContent>

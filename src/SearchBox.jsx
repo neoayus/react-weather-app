@@ -4,27 +4,33 @@ import Button from '@mui/material/Button'
 
 import "./SearchBox.css"
 
-export default function SearchBox(){
+export default function SearchBox({updateInfo}){
     let [city, setCity] = useState(""); 
+    let [error, setError] = useState(false); 
 
     let api_url = "https://api.openweathermap.org/data/2.5/weather?"
     const api_key = "84dc4240bb164c5b2bea3df507df0911" ;
 
     
     let getWeatherInfo = async () => {
-        // https://api.openweathermap.org/data/2.5/weather?q=delhi&appid=84dc4240bb164c5b2bea3df507df0911
-        let response = await fetch(`${api_url}q=${city}&appid=${api_key}&units=metric`);
-        let jsonResponse = await response.json();
-        console.log(jsonResponse);
-        let result = { 
-            temp: jsonResponse.main.temp,
-            tempMin: jsonResponse.main.temp_min,
-            tempMax: jsonResponse.main.temp_max,
-            humidity: jsonResponse.main.humidity,
-            feelsLike: jsonResponse.main.feels_like,
-            weather: jsonResponse.weather[0].description,
-        };
-        console.log(result);
+        try{
+            let response = await fetch(`${api_url}q=${city}&appid=${api_key}&units=metric`);
+            let jsonResponse = await response.json();
+            // console.log(jsonResponse);
+            let result = { 
+                city: city,
+                temp: jsonResponse.main.temp,
+                tempMin: jsonResponse.main.temp_min,
+                tempMax: jsonResponse.main.temp_max,
+                humidity: jsonResponse.main.humidity,
+                feelsLike: jsonResponse.main.feels_like,
+                weather: jsonResponse.weather[0].description,
+            };
+            console.log(result);
+            return result ; 
+        }catch(err){
+            throw new err ; 
+        }
     }
 
     // ?q={city name}&appid={API key}
@@ -33,15 +39,20 @@ export default function SearchBox(){
         setCity(evt.target.value);
     };
 
-    let handleSubmit = (evt) => {
-        evt.preventDefault();
-        console.log(city);
-        setCity("");
-        getWeatherInfo();
+    let handleSubmit = async (evt) => {
+        try{
+            evt.preventDefault();
+            console.log(city);
+            setCity("");
+            let newInfo = await getWeatherInfo();
+            updateInfo(newInfo);
+        }catch(err){
+            setError(true); 
+        }
     };
     return(
         <div className="SearchBox">
-            <h3>Search for the Weather</h3>
+            {/* <h3>Search for the Weather</h3> */}
             <form onSubmit={handleSubmit}>
                 <TextField 
                     id="city" 
@@ -54,6 +65,7 @@ export default function SearchBox(){
                 <br />
                 <br />
                 <Button variant="contained" type="submit">Search </Button>
+                {error && <p style={{color: "red"}}>Apologies, No such place exist in our API : ( </p>}
             </form>
         </div>
     )
