@@ -20,8 +20,7 @@ export default function WeatherApp(){
     }
     return(
         <>
-            <h2 style={{textAlign: "center"}}>Rolling new Components from Weather App... </h2>
-
+            <h2 style={{textAlign: "center"}}>this that weather app</h2>
             <SearchBox updateInfo={updateInfo}/>
             <InfoBox Info={weatherInfo}/>
 
