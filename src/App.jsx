@@ -2,15 +2,17 @@
 // import './App.css'
 
 // Import Components
-import Button from "@mui/material/Button"
+// from MUI
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button'
+
+// source directory
+import SearchBox from "./SearchBox";
 
 function App() {
-  let handleButtonClick = () =>{
-    console.log("this that slime shit");
-  }
   return (
     <>
-      <Button variant="contained" onClick={handleButtonClick}>Click Me!</Button>
+      <SearchBox/>
     </>
   )
 }
