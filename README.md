@@ -1,6 +1,3 @@
-Here's the correct **Markdown file content** ready for GitHub. Save this as `README.md` in your project folder:
-
-```md
 # React Weather App
 
 [Live Demo on Netlify](https://neoayus-react-weather-app.netlify.app/)
@@ -48,4 +45,3 @@ The primary objective of the React Weather App is to provide users with a clean,
 ## Conclusion
 
 The React Weather App demonstrates practical front-end development by combining responsive design, API integration, and modern UI libraries. Built with React, styled with Material UI, and deployed via GitHub and Netlify, it showcases proficiency in creating scalable and user-friendly web applications.
-```
