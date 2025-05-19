@@ -40,14 +40,15 @@ export default function SearchBox({updateInfo}){
     };
 
     let handleSubmit = async (evt) => {
-        try{
-            evt.preventDefault();
+        evt.preventDefault();
+        try {
             console.log(city);
             setCity("");
             let newInfo = await getWeatherInfo();
             updateInfo(newInfo);
-        }catch(err){
-            setError(true); 
+            setError(false); // error disappears
+        } catch (err) {
+            setError(true);
         }
     };
     return(
